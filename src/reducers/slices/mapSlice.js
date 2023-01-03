@@ -25,13 +25,14 @@ const mapSlice = createSlice({
         ],
     },
     reducers: {
-        generateNewMap(state, action) {
+        updateMap(state, action) {
             console.log(state, action) //checking
-            state.map.splice(0,state.map.length);
-            state.map.push(action.payload.map)
+            state.map[action.payload.x][action.payload.y] = action.payload.value
+        },
+        generateNewMap(state, action) {
         },
     }
 })
 
-export const {generateNewMap} = mapSlice.actions;
+export const {updateMap} = mapSlice.actions;
 export default mapSlice.reducer;
