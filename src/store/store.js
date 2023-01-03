@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from '../reducers/rootReducer';
+import mapReducer from '../reducers/slices/mapSlice'
 
-const store = configureStore({
-    reducer: rootReducer,
-});
-
-export default store;
+export default configureStore({
+    reducer: {
+        map: mapReducer,
+    }
+})

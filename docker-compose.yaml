@@ -2,7 +2,7 @@ version: "3.1"
 services:
   cockroachdb:
     image: cockroachdb/cockroach:latest-v20.2
-    command: start-single-node --insecure --store=attrs=ssd,path=/var/lib/cockroach/
+    command: start-single-node --insecure --tanksStore=attrs=ssd,path=/var/lib/cockroach/
     restart: "no"
     volumes:
       - cockroach_data:/var/lib/cockroach
