@@ -6,5 +6,6 @@ export default configureStore({
     reducer: {
         map: mapReducer,
         gameplay: gameplayReducer,
-    }
+    },
+    devTools: true,
 })

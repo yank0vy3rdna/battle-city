@@ -12,8 +12,8 @@ const Brick = "brick"
 const Empty = "empty"
 
 export const BattleMap = () => {
-    const currentMap = useSelector(state => state.map.map);
-    const currentTank = useSelector(state => state.gameplay.gameplay);
+    const {currentMap} = useSelector((state) => state.map);
+    const {currentTank} = useSelector((state) => state.gameplay);
     const dispatch = useDispatch()
 
     const update = () => dispatch(updateMap())
@@ -23,24 +23,26 @@ export const BattleMap = () => {
     const tapS = () => dispatch(clickS())
     const tapD = () => dispatch(clickD())
 
+    console.log(currentTank.state)
+
 
 
     const onKeyPress = (e) => {
-        if (e.timeStamp - currentTank().lastPress < 500) {
+        if (e.timeStamp - currentTank.lastPress < 500) {
             return
         }
         press(e.timeStamp)
 
         switch (e.key) {
             case 'w':
-                switch (currentMap[currentTank().myTank.y][currentTank().myTank.x]) {
+                switch (currentMap[currentTank.myTank.y][currentTank.myTank.x]) {
                     case TankTop:
-                        update(currentTank().myTank.y, currentTank().myTank.x, Empty)
+                        update(currentTank.myTank.y, currentTank.myTank.x, Empty)
                         tapW()
                     case TankLeft:
                     case TankRight:
                     case TankBottom:
-                        update(currentTank().myTank.y, currentTank().myTank.x, TankTop)
+                        update(currentTank.myTank.y, currentTank.myTank.x, TankTop)
                         // setData(structuredClone(data))
                         break
                     default:
@@ -49,14 +51,14 @@ export const BattleMap = () => {
                 }
                 break
             case 'a':
-                switch (currentMap[currentTank().myTank.y][currentTank().myTank.x]) {
+                switch (currentMap[currentTank.myTank.y][currentTank.myTank.x]) {
                     case TankLeft:
-                        update(currentTank().myTank.y, currentTank().myTank.x, Empty)
+                        update(currentTank.myTank.y, currentTank.myTank.x, Empty)
                         tapA()
                     case TankTop:
                     case TankRight:
                     case TankBottom:
-                        update(currentTank().myTank.y, currentTank().myTank.x, TankLeft)
+                        update(currentTank.myTank.y, currentTank.myTank.x, TankLeft)
                         break
                     default:
                         alert("Wrong tank data")
@@ -64,14 +66,14 @@ export const BattleMap = () => {
                 }
                 break
             case 's':
-                switch (currentMap[currentTank().myTank.y][currentTank().myTank.x]) {
+                switch (currentMap[currentTank.myTank.y][currentTank.myTank.x]) {
                     case TankBottom:
-                        update(currentTank().myTank.y, currentTank().myTank.x, Empty)
+                        update(currentTank.myTank.y, currentTank.myTank.x, Empty)
                         tapS()
                     case TankLeft:
                     case TankRight:
                     case TankTop:
-                        update(currentTank().myTank.y, currentTank().myTank.x, TankBottom)
+                        update(currentTank.myTank.y, currentTank.myTank.x, TankBottom)
                         break
                     default:
                         alert("Wrong tank data")
@@ -79,14 +81,14 @@ export const BattleMap = () => {
                 }
                 break
             case 'd':
-                switch (currentMap[currentTank().myTank.y][currentTank().myTank.x]) {
+                switch (currentMap[currentTank.myTank.y][currentTank.myTank.x]) {
                     case TankRight:
-                        update(currentTank().myTank.y, currentTank().myTank.x, Empty)
+                        update(currentTank.myTank.y, currentTank.myTank.x, Empty)
                         tapD()
                     case TankLeft:
                     case TankTop:
                     case TankBottom:
-                        update(currentTank().myTank.y, currentTank().myTank.x, TankRight)
+                        update(currentTank.myTank.y, currentTank.myTank.x, TankRight)
                         break
                     default:
                         alert("Wrong tank data")
